@@ -1,0 +1,37 @@
+{
+  "name": "customuser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "mobile": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "frommessages": {
+      "type": "hasMany",
+      "model": "message",
+      "foreignKey": "from"
+    },
+    "formessages": {
+      "type": "hasMany",
+      "model": "message",
+      "foreignKey": "for"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

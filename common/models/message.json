@@ -1,0 +1,33 @@
+{
+  "name": "message",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "message": {
+      "type": "string",
+      "required": true
+    },
+    "createdAt": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "fromuser": {
+      "type": "belongsTo",
+      "model": "customuser",
+      "foreignKey": "from"
+    },
+    "foruser": {
+      "type": "belongsTo",
+      "model": "customuser",
+      "foreignKey": "for"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
