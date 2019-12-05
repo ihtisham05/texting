@@ -16,7 +16,7 @@
     },
     "read": {
       "type": "number",
-      "default":0
+      "default": 0
     }
   },
   "validations": [],
@@ -33,5 +33,43 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "updateReadStatus": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "userId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "chatUserId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "returnObj",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/updateReadStatus",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }

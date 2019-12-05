@@ -1,0 +1,8 @@
+POST /messages/updateReadStatus
+
+id	(most recent message id )
+2
+userId	(logged in user)
+1
+chatUserId (chat user)
+2	
