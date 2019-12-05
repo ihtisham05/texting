@@ -13,6 +13,10 @@
     "createdAt": {
       "type": "date",
       "required": true
+    },
+    "read": {
+      "type": "number",
+      "default":0
     }
   },
   "validations": [],
