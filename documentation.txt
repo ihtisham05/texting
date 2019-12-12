@@ -1,3 +1,26 @@
+Login
+POST /systemusers/login
+request
+{
+"email":"",
+"password",""
+}
+---------------------------------------------------
+Signup
+POST /systemusers
+{
+  "email": "ithisham@gmail.com",
+  "emailVerified": true,
+"password":"abc123"
+}
+response 
+{
+  "email": "ithisham@gmail.com",
+  "emailVerified": false,
+  "id": 1
+}
+---------------------------------------------------
+
 POST /messages/updateReadStatus
 
 id	(most recent message id )
@@ -6,3 +29,4 @@ userId	(logged in user)
 1
 chatUserId (chat user)
 2	
+

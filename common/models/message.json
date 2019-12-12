@@ -53,6 +53,12 @@
           "type": "number",
           "required": true,
           "description": ""
+        },
+        {
+          "arg": "serviceId",
+          "type": "number",
+          "required": true,
+          "description": ""
         }
       ],
       "returns": [

@@ -42,5 +42,9 @@
   "customuser": {
     "dataSource": "db",
     "public": true
+  },
+  "systemuser": {
+    "dataSource": "db",
+    "public": true
   }
 }
