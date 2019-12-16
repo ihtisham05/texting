@@ -7,9 +7,9 @@
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
-
+var socketIO = require("socket.io");
 var app = module.exports = loopback();
-
+var io={};
 app.start = function() {
   // start the web server
   return app.listen(function() {
@@ -30,5 +30,12 @@ boot(app, __dirname, function(err) {
 
   // start the server if `$ node server.js`
   if (require.main === module)
-    app.start();
+    // app.start();
+      io = require('socket.io')(app.start());
+      io.on('connection', (socket) => {
+      console.log("New user connected: ",socket.id);
+      socket.on('disconnect', () => {
+        console.log("User disconnected");
+      });
+    });
 });
