@@ -10,11 +10,11 @@
       "type": "string",
       "required": true
     },
-    "name": {
+    "fname": {
       "type": "string",
       "required": true
     },
-    "type": {
+    "lname": {
       "type": "string",
       "required": true
     }
