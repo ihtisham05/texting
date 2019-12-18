@@ -34,6 +34,9 @@ boot(app, __dirname, function(err) {
       io = require('socket.io')(app.start());
       io.on('connection', (socket) => {
       console.log("New user connected: ",socket.id);
+      socket.on('newMessage', (data) => {
+        console.log("new message",data);
+      });
       socket.on('disconnect', () => {
         console.log("User disconnected");
       });
