@@ -17,6 +17,10 @@
     "read": {
       "type": "number",
       "default": 0
+    },
+    "csvId": {
+      "type": "number",
+      "default": 0
     }
   },
   "validations": [],

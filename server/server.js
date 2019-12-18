@@ -48,11 +48,11 @@ boot(app, __dirname, function(err) {
           await socket.broadcast.emit('fMessageFromRing', data);
         }
       });
-        console.log("new message",data);
+        console.log("new message from stephen",data);
       });
       socket.on('newMessageFromF',async function(data){
         await message.create({message:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
-        await socket.broadcast.emit('fMessageFromRing', data);
+        await socket.broadcast.emit('newRingCentralMessage', data);
       });
       socket.on('disconnect', () => {
         console.log("User disconnected");
