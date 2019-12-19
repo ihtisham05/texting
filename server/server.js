@@ -38,7 +38,7 @@ boot(app, __dirname, function(err) {
       var user = app.models.customuser;
       console.log("New user connected: ",socket.id);
       socket.on('newMessage', (data) => {
-
+        data.current_date_time = new  Date();
       user.find({where:{mobile:data.phoneNumber_from}}).then(async function(userFound){
         if(userFound.length){
           console.log("inside if");
