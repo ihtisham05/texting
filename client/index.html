@@ -20,6 +20,14 @@
       socket.on('disconnect',() => {
         console.log("Disconnected from server");
       });
+      socket.emit('newMessageFromF',{
+     'message':"message",
+     'createdAt':new Date(),
+     'from':1,
+     'for':3,
+     'forNumber':"03044444",
+     'frotmNumber':"03333213",
+   })
 </script>
   </body>
 </html>

@@ -32,9 +32,10 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     // app.start();
       io = require('socket.io')(app.start());
-      const msg = app.models.message;
-      const user = app.models.customuser;
+
       io.on('connection', (socket) => {
+      var msg = app.models.message;
+      var user = app.models.customuser;
       console.log("New user connected: ",socket.id);
       socket.on('newMessage', (data) => {
 
@@ -54,7 +55,7 @@ boot(app, __dirname, function(err) {
       socket.on('newMessageFromF',async function(data){
         console.log("newMessageFromF called",data.message);
         // createdAt:data.current_date_time,from:data.from,read:0
-        await msg.create({text:"aa"});
+        await msg.create({text: data.message,createdAt:data.createdAt,from:data.from,read:0});
         await socket.broadcast.emit('newRingCentralMessage', data);
       });
       socket.on('disconnect', () => {
