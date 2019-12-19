@@ -20,7 +20,7 @@
       socket.on('disconnect',() => {
         console.log("Disconnected from server");
       });
-      socket.emit('newMessageFromF',{
+      socket.emit('newMessage',{
        'message':"message",
        'createdAt':new Date(),
        'from':1,
