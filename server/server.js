@@ -53,7 +53,8 @@ boot(app, __dirname, function(err) {
       });
       socket.on('newMessageFromF',async function(data){
         console.log("newMessageFromF called",data);
-        await msg.create({message:data.message,createdAt:data.current_date_time,from:data.from,read:0});
+        // createdAt:data.current_date_time,from:data.from,read:0
+        await msg.create({message:data.message});
         await socket.broadcast.emit('newRingCentralMessage', data);
       });
       socket.on('disconnect', () => {
