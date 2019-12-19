@@ -40,12 +40,12 @@ boot(app, __dirname, function(err) {
 
       user.find({where:{mobile:data.phoneNumber_from}}).then(async function(userFound){
         if(userFound.length){
-          await msg.create({message:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
+          await msg.create({text:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
           await msg.broadcast.emit('fMessageFromRing', data);
           
         }else{
           await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname});
-          await msg.create({message:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
+          await msg.create({text:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
         }
       });
@@ -54,7 +54,7 @@ boot(app, __dirname, function(err) {
       socket.on('newMessageFromF',async function(data){
         console.log("newMessageFromF called",data.message);
         // createdAt:data.current_date_time,from:data.from,read:0
-        await msg.create({message:data.message});
+        await msg.create({text:data.message});
         await socket.broadcast.emit('newRingCentralMessage', data);
       });
       socket.on('disconnect', () => {
