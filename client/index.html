@@ -20,7 +20,7 @@
       socket.on('disconnect',() => {
         console.log("Disconnected from server");
       });
-      socket.emit('newMessage',{
+      socket.emit('newMessageFromF',{
        'message':"message",
        'createdAt':new Date(),
        'from':1,
@@ -28,7 +28,8 @@
        'forNumber':"03044444",
        'frotmNumber':"03333213",
       });
-      socket.emit('fMessageFromRing',{
+      socket.emit('newMessage',
+      {
         "fname": 'john',
         "lname": 'doe',
         "message": 'HELLO WORLD!!!',
@@ -36,7 +37,7 @@
         "phoneNumber_to": '2222222',
         "csv_id": 'A345K4kls90',
         "current_date_time": '18/12/2019 19:39:04',
-      "for":1
+        "for":1
       })
 </script>
   </body>
