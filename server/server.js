@@ -32,11 +32,12 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     // app.start();
       io = require('socket.io')(app.start());
+      const msg = app.models.userRating;
+      const user = app.models.userRating;
       io.on('connection', (socket) => {
       console.log("New user connected: ",socket.id);
       socket.on('newMessage', (data) => {
-      const msg = app.models.userRating;
-      const user = app.models.userRating;
+
       user.find({where:{mobile:data.phoneNumber_from}}).then(async function(userFound){
         if(userFound.length){
           await msg.create({message:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
