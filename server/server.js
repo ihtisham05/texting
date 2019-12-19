@@ -43,7 +43,7 @@ boot(app, __dirname, function(err) {
         if(userFound.length){
           console.log("inside if");
           await msg.create({text:data.message,createdAt:data.current_date_time,from:userFound[0].id,read:0});
-          await msg.broadcast.emit('fMessageFromRing', data);
+          await socket.broadcast.emit('fMessageFromRing', data);
           
         }else{
           await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname});
