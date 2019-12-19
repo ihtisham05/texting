@@ -32,8 +32,8 @@ boot(app, __dirname, function(err) {
   if (require.main === module)
     // app.start();
       io = require('socket.io')(app.start());
-      const msg = app.models.userRating;
-      const user = app.models.userRating;
+      const msg = app.models.message;
+      const user = app.models.customuser;
       io.on('connection', (socket) => {
       console.log("New user connected: ",socket.id);
       socket.on('newMessage', (data) => {
