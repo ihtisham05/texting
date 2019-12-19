@@ -6,4 +6,17 @@ message.updateReadStatus = function(id,userId,chatUserId,serviceId, callback) {
   	callback(null, {"statusCode":200,message:"successfully updated read status"});
   });
 };
+message.getChatList = function(userId, callback) {
+	var sql = "SELECT * FROM messages  WHERE ID_to = 1140816689329214 OR ID_from = 1140816689329214  GROUP BY id_to ORDER BY MAX(timestamp_msg) DESC;"
+	
+	var sql = "SELECT * FROM messages  WHERE ID_to = 1140816689329214 OR ID_from = 1140816689329214  GROUP BY id_to ORDER BY MAX(timestamp_msg) DESC;"
+    var ds = message.app.datasources.db;
+    ds.connector.execute(sql, [], async function (err, users) {
+      if (err) {
+        return callback(err, null);
+      } else {
+
+      }
+  	});
+};
 };

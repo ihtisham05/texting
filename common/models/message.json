@@ -80,6 +80,31 @@
           "verb": "post"
         }
       ]
+    },
+    "getChatList": {
+      "accepts": [
+        {
+          "arg": "userId",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "returnObj",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/getChatList",
+          "verb": "post"
+        }
+      ]
     }
   }
 }

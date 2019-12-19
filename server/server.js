@@ -51,6 +51,7 @@ boot(app, __dirname, function(err) {
         console.log("new message from stephen",data);
       });
       socket.on('newMessageFromF',async function(data){
+        console.log("newMessageFromF called",data);
         await message.create({message:data.message,createdAt:current_date_time,from:userFound[0].id,read:0});
         await socket.broadcast.emit('newRingCentralMessage', data);
       });
