@@ -20,8 +20,8 @@
     },
     "csvId": {
       "type": "number",
-      "default": 0,
-      "required":false
+      "required": false,
+      "default": 0
     }
   },
   "validations": [],

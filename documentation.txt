@@ -1,3 +1,40 @@
+POST /customusers/searchRingCentralUser
+request 
+name 
+response
+[
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "ali",
+    "id": 1
+  },
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "ahmad",
+    "id": 2
+  },
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "bazid",
+    "id": 3
+  },
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "rizwan",
+    "id": 4
+  }
+]
+-------------------------------------------------------
+
+
 POST api/messages/getChatList
 request
 userId1

@@ -17,6 +17,10 @@
     "lname": {
       "type": "string",
       "required": true
+    },
+    "searchName": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
@@ -33,5 +37,31 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "searchRingCentralUser": {
+      "accepts": [
+        {
+          "arg": "name",
+          "type": "string",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "returnObj",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/searchRingCentralUser",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
