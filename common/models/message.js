@@ -47,7 +47,9 @@ message.getChatList = function(userId, callback) {
         });
         var onlyIds = [];
         for(let single of uniqueMessages){
+          if(single.id!= userId){
             await onlyIds.push(single.id);
+          }
         }
         var userResult = await USER.find({where:{id:{inq:onlyIds}}});
         var finalArray = [];
