@@ -46,9 +46,8 @@ boot(app, __dirname, function(err) {
           await socket.broadcast.emit('fMessageFromRing', data);
           
         }else{
-
-          await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname,searchName:sName,type:"ringCentral"});
-          await msg.create({message:data.message,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
+          var newUser = await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname,searchName:sName,type:"ringCentral"});
+          await msg.create({message:data.message,createdAt:data.current_date_time,from:newUser.id,for:1,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
         }
         console.log("new message from stephen",data);
