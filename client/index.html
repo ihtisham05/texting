@@ -20,21 +20,21 @@
       socket.on('disconnect',() => {
         console.log("Disconnected from server");
       });
-      socket.emit('newMessageFromF',{
-       'message':"message",
-       'createdAt':new Date(),
-       'from':1,
-       'for':3,
-       'forNumber':"03044444",
-       'frotmNumber':"03333213",
-      });
+      // socket.emit('newMessageFromF',{
+      //  'message':"message",
+      //  'createdAt':new Date(),
+      //  'from':1,
+      //  'for':3,
+      //  'forNumber':"03044444",
+      //  'frotmNumber':"03333213",
+      // });
       socket.emit('newMessage',
       {
-        "fname": 'john',
-        "lname": 'doe',
+        "fname": 'rizwan',
+        "lname": 'dkhanoe',
         "message": 'HELLO WORLD!!!',
         "phoneNumber_from": '11111111',
-        "phoneNumber_to": '2222222',
+        "phoneNumber_to": '44444',
         "csv_id": 'A345K4kls90',
         "current_date_time": '18/12/2019 19:39:04',
         "for":1
