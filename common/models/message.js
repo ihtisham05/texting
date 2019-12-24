@@ -7,20 +7,7 @@ message.updateReadStatus = function(id,userId,chatUserId,serviceId, callback) {
   });
 };
 message.getChatList = function(userId, callback) {
-        const USER = message.app.models.customuser;
-	// var sql = "SELECT * FROM messages  WHERE ID_to = 1140816689329214 OR ID_from = 1140816689329214  GROUP BY id_to ORDER BY MAX(timestamp_msg) DESC;"
-
-	// var sql = "SELECT * FROM message  GROUP BY message.from ORDER BY MAX(message.createdAt) DESC";
-	// var sql = "SELECT distinct(r.from),createdAt FROM (SELECT * FROM  `message` t WHERE (t.from =1 OR t.for =1) ORDER BY t.createdAt DESC)r"
- //    // var sql = "SELECT r , (r.from + r.for) AS dist FROM (SELECT * FROM  `message` t WHERE (t.from =1 OR t.for =1) ORDER BY t.createdAt DESC)r ORDER BY dist.createdAt";
- //    var ds = message.app.datasources.db;
- //    ds.connector.execute(sql, [], async function (err, users) {
- //      if (err) {
- //        return callback(err, null);
- //      } else {
- //      	console.log("users",users);
- //      }
- //  	});
+  const USER = message.app.models.customuser;
  	message.find({order:'createdAt DESC',where:{or:[{for:userId},{from:userId}]}}).then(async function(allMessages){
         var allIds = [];
         for(let user of allMessages){
@@ -67,5 +54,10 @@ message.getChatList = function(userId, callback) {
         }
       return callback(null, finalArray);
   })
+};
+message.getMessage = function(userId1,userId2,startIndex, limit, callback) {
+  message.find({skip: startIndex, limit: limit, order: 'createdAt DESC',where:{and:[{or:[{for:userId1},{for:userId2}]},{or:[{from:userId1},{from:userId2}]}]}}).then(async function(messages){
+    callback(null,messages);
+  });
 };
 };

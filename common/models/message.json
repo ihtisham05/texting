@@ -106,6 +106,49 @@
           "verb": "post"
         }
       ]
+    },
+    "getMessage": {
+      "accepts": [
+        {
+          "arg": "userId1",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "userId2",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "startIndex",
+          "type": "number",
+          "required": true,
+          "description": ""
+        },
+        {
+          "arg": "limit",
+          "type": "number",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "returns": [
+        {
+          "arg": "returnObj",
+          "type": "object",
+          "root": true,
+          "description": ""
+        }
+      ],
+      "description": "",
+      "http": [
+        {
+          "path": "/getMessage",
+          "verb": "post"
+        }
+      ]
     }
   }
 }

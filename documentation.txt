@@ -1,3 +1,65 @@
+GET /customusers
+request
+filter = {"where":{"type":"service"}}
+
+response
+[
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "ali",
+    "type": "",
+    "id": 1
+  },
+  {
+    "mobile": "123213",
+    "fname": "asdsaasd",
+    "lname": "asd",
+    "searchName": "ahmad",
+    "type": "",
+    "id": 2
+  }
+]
+--------------------------------------------------------
+POST /messages/getMessage
+request 
+userId1	2
+userId2	1
+startIndex 0
+limit 10	
+response
+[
+  {
+    "message": "how are u",
+    "createdAt": "2019-12-19T18:33:14.000Z",
+    "read": 0,
+    "csvId": 0,
+    "id": 3,
+    "from": 1,
+    "for": 2
+  },
+  {
+    "message": "hello",
+    "createdAt": "2019-12-19T18:32:49.000Z",
+    "read": 0,
+    "csvId": 0,
+    "id": 2,
+    "from": 2,
+    "for": 1
+  },
+  {
+    "message": "hi",
+    "createdAt": "2019-12-19T18:30:30.000Z",
+    "read": 0,
+    "csvId": 0,
+    "id": 1,
+    "from": 2,
+    "for": 1
+  }
+]
+--------------------------------------------------------------------
+
 POST /customusers/searchRingCentralUser
 request 
 name 
