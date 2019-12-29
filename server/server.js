@@ -37,23 +37,28 @@ boot(app, __dirname, function(err) {
       var msg = app.models.message;
       var user = app.models.customuser;
       console.log("New user connected: ",socket.id);
-      socket.on('newMessage', (data) => {
-      	data = JSON.parse(data);
-        var sName = data.fname +" "+ data.lname;
-      //XXX  data.current_date_time = new  Date();
-      user.find({where:{mobile:data.phoneNumber_from}}).then(async function(userFound){
+      socket.on('newMessage', (datas) => {
+        datas = JSON.parse(datas);
+      console.log("inside ---------------: ",socket.id);
+
+      	
+        for(let data of datas.records){
+        // var sName = data.fname +" "+ data.lname;
+        data.current_date_time = new  Date();
+      user.find({where:{mobile:data.from.phoneNumber}}).then(async function(userFound){
         if(userFound.length){
-          //XXX await msg.create({message:data.message,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
+          await msg.create({message:data.subject,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
           
         }else{
-          var newUser = await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname,searchName:sName,type:"ringCentral"});
+          var newUser = await user.create({mobile:data.from.phoneNumber,fname:"fname",lname:"lname",searchName:"fname lname",type:"ringCentral"});
           //XXX await msg.create({message:data.message,createdAt:data.current_date_time,from:newUser.id,for:1,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
         }
         console.log("new message from stephen",data);
       });
         
+        }
       });
       socket.on('newMessageFromF',async function(data){
         console.log("newMessageFromF called",data.message);
