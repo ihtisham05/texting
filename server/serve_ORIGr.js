@@ -40,15 +40,15 @@ boot(app, __dirname, function(err) {
       socket.on('newMessage', (data) => {
       	data = JSON.parse(data);
         var sName = data.fname +" "+ data.lname;
-      //XXX  data.current_date_time = new  Date();
+      //xx  data.current_date_time = new  Date();
       user.find({where:{mobile:data.phoneNumber_from}}).then(async function(userFound){
         if(userFound.length){
-          //XXX await msg.create({message:data.message,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
+          await msg.create({message:data.message,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
           
         }else{
           var newUser = await user.create({mobile:data.phoneNumber_from,fname:data.fname,lname:data.lname,searchName:sName,type:"ringCentral"});
-          //XXX await msg.create({message:data.message,createdAt:data.current_date_time,from:newUser.id,for:1,read:0});
+          await msg.create({message:data.message,createdAt:data.current_date_time,from:newUser.id,for:1,read:0});
           await socket.broadcast.emit('fMessageFromRing', data);
         }
         console.log("new message from stephen",data);
