@@ -39,23 +39,31 @@ boot(app, __dirname, function(err) {
       console.log("New user connected: ",socket.id);
       socket.on('newMessage', (datas) => {
         datas = JSON.parse(datas);
-      console.log("inside ---------------: ",socket.id);
-
-      	
+      	console.log("new message from stephen -----",datas);
         for(let data of datas.records){
         // var sName = data.fname +" "+ data.lname;
+        let rizObj =   {
+            "fname": 'fname',
+            "lname": 'lname',
+            "message": data.subject,
+            "phoneNumber_from": data.from.phoneNumber,
+            "phoneNumber_to": '44444',
+            "csv_id": 'A345K4kls90',
+            "current_date_time": new Date(),
+            "for":1
+          }
         data.current_date_time = new  Date();
       user.find({where:{mobile:data.from.phoneNumber}}).then(async function(userFound){
         if(userFound.length){
           await msg.create({message:data.subject,createdAt:data.current_date_time,from:userFound[0].id,for:1,read:0});
-          await socket.broadcast.emit('fMessageFromRing', data);
+          await socket.broadcast.emit('fMessageFromRing', rizObj);
           
         }else{
           var newUser = await user.create({mobile:data.from.phoneNumber,fname:"fname",lname:"lname",searchName:"fname lname",type:"ringCentral"});
           //XXX await msg.create({message:data.message,createdAt:data.current_date_time,from:newUser.id,for:1,read:0});
-          await socket.broadcast.emit('fMessageFromRing', data);
+          await socket.broadcast.emit('fMessageFromRing', rizObj);
         }
-        console.log("new message from stephen",data);
+        
       });
         
         }
