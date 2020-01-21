@@ -78,4 +78,81 @@ boot(app, __dirname, function(err) {
         console.log("User disconnected");
       });
     });
+var supertest = require('supertest');
+var api = supertest('https://platform.ringcentral.com');
+      async function ringCentralUnread(){
+        const SDK = require('@ringcentral/sdk').SDK;         
+        const rcsdk = new SDK({
+            server: "https://platform.ringcentral.com",
+            clientId: 'mxk1V7EPRPyPIejLMu-RQQ',
+            clientSecret: 'XGz4vaduRNSWFSdHLgNolggM3T3PmfRNueo455pn9iZA',
+            redirectUri: '' // optional, but is required for Implicit Grant and Authorization Code OAuth Flows (see below)
+        });
+        await rcsdk.login({
+            username: '+14697216776', // phone number in full format
+            extension: '101', // leave blank if direct number is used
+            password: 'Texting@1'
+        }).then(function(response) {
+              // console.log("message",response);
+        }).catch(function(e) {
+            console.log('Server cannot authorize user',e.message);
+        });
+        let tmp = await rcsdk.platform().auth().accessTokenValid();  
+        console.log("check",tmp);
+        rcsdk.send({
+            method: 'GET',
+            url: '/restapi/v1.0/account/~/extension/~/message-store',
+            query: {
+               readStatus: 'Unread'
+            },
+            headers: {},
+            body: {
+            }
+        }).then(function(apiResponse){
+            return apiResponse.json();
+        }).then(function(json){
+             rcsdk.send({
+            method: 'PUT',
+            url: `/restapi/v1.0/account/~/extension/~/message-store/${json.records[0].id}`,
+            query: {
+               readStatus: 'Read'
+            },
+            headers: {},
+            params:{
+              readStatus:"Read"
+            },
+            body: {
+            }
+        }).then(async function(){
+                  setTimeout(async function () {
+            await ringCentralUnread();
+          }, 10000);
+        }).catch(function(e){
+          console.log("sub catch ",e);
+        })
+
+        }).catch(function(e){
+
+            if (e.response || e.request) {
+     
+                var request = e.request;
+                var response = e.response;
+     
+                alert('API error ' + e.message + ' for URL' + request.url + ' ' + rcsdk.error(response));
+     
+            } else {
+             
+                console.log(e.message);
+       
+            }
+            setTimeout(async function () {
+            await ringCentralUnread();
+          }, 10000);
+     
+        });
+
+//---------------------------------------------------------------------------------- 
+   
+      }
+      ringCentralUnread();
 });
